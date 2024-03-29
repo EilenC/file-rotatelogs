@@ -1,6 +1,7 @@
 package rotatelogs
 
 import (
+	"path/filepath"
 	"time"
 
 	"github.com/lestrrat-go/file-rotatelogs/internal/option"
@@ -45,7 +46,7 @@ func WithLocation(loc *time.Location) Option {
 // symbolic link name that gets linked to the current
 // file name being used.
 func WithLinkName(s string) Option {
-	return option.New(optkeyLinkName, s)
+	return option.New(optkeyLinkName, filepath.ToSlash(s))
 }
 
 // WithMaxAge creates a new Option that sets the

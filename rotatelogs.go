@@ -276,9 +276,9 @@ func (rl *RotateLogs) rotateNolock(filename string) error {
 		// the main filename's parent directory, then we create a
 		// symlink with a relative path
 		linkDest := filename
-		linkDir := filepath.Dir(rl.linkName)
+		linkDir := filepath.ToSlash(filepath.Dir(rl.linkName))
 
-		baseDir := filepath.Dir(filename)
+		baseDir := filepath.ToSlash(filepath.Dir(filename))
 		if strings.Contains(rl.linkName, baseDir) {
 			tmp, err := filepath.Rel(linkDir, filename)
 			if err != nil {
